@@ -1,0 +1,21 @@
+{
+  "name": "hotelbooking",
+  "description": "none",
+  "main": "",
+  "authors": [
+    "blackkat98 <nam.th.200698@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/blackkat98/adminlte3.git",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "adminlte3": "*"
+  }
+}

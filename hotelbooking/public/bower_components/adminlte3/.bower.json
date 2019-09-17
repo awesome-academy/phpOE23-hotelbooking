@@ -1,0 +1,14 @@
+{
+  "name": "adminlte3",
+  "homepage": "https://github.com/blackkat98/adminlte3",
+  "_release": "5409331db4",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "5409331db4c826814f8263c9d0cf8ba022db6504"
+  },
+  "_source": "https://github.com/blackkat98/adminlte3.git",
+  "_target": "*",
+  "_originalSource": "adminlte3",
+  "_direct": true
+}
