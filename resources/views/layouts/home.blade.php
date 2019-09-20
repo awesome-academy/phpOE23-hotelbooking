@@ -104,7 +104,7 @@
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">trans('home.parent_page_h') }}</a></li>
+								<li class="breadcrumb-item"><a href="#">{{ trans('home.parent_page_h') }}</a></li>
 								<li class="breadcrumb-item active">@yield('title')</li>
 							</ol>
 						</div>
@@ -152,10 +152,6 @@
 			</div>
 		</aside>
 		<footer class="main-footer">
-			<div class="float-right d-none d-sm-inline">
-				Anything you want
-			</div>
-			<strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
 		</footer>
 	</div>
 	<script src="{{ asset('bower_components/adminlte3/plugins/jquery/jquery.min.js') }}"></script>
