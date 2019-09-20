@@ -11,12 +11,12 @@ Register
 @section('content')
 <div class="card">
     <div class="card-body register-card-body">
-        <p class="login-box-msg">Register a new membership</p>
+        <p class="login-box-msg"> {{ trans('auth_forms.header_r') }} </p>
 
         <form action="{{ route('register') }}" method="post">
             {{ csrf_field() }}
             <div class="input-group mb-3">
-                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Username">
+                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ trans('auth_forms.username') }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-user"></span>
@@ -29,7 +29,7 @@ Register
                 @enderror
             </div>
             <div class="input-group mb-3">
-                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ trans('auth_forms.email') }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -49,7 +49,7 @@ Register
                 </select>
             </div>
             <div class="input-group mb-3">
-                <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="Phone Number">
+                <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="{{ trans('auth_forms.phone') }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-user"></span>
@@ -62,7 +62,7 @@ Register
                 @enderror
             </div>
             <div class="input-group mb-3">
-                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ trans('auth_forms.password') }}">
                 <div class="input-group-append">
                     <div class="input-group-text">
                         <span class="fas fa-lock"></span>
@@ -75,7 +75,7 @@ Register
                 @enderror
             </div>
             <div class="input-group mb-3">
-                <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Retype password">
+                <input type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="{{ trans('auth_forms.password2') }}">
 
                 <div class="input-group-append">
                     <div class="input-group-text">
@@ -88,29 +88,27 @@ Register
                     <div class="icheck-primary">
                         <input type="checkbox" id="agreeTerms" name="terms" value="agree">
                         <label for="agreeTerms">
-                            I agree to the <a href="#">terms</a>
+                            {{ trans('auth_forms.agree') }} <a href="#">{{ trans('auth_forms.terms') }}</a>
                         </label>
                     </div>
                 </div>
                 <div class="col-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat"> {{ trans('auth_forms.submit_r') }} </button>
                 </div>
             </div>
         </form>
 
         <div class="social-auth-links text-center">
-            <p>- OR -</p>
+            <p>- {{ trans('auth_forms.or') }} -</p>
             <a href="#" class="btn btn-block btn-primary">
-                <i class="fab fa-facebook mr-2"></i>
-                Sign up using Facebook
+                {{ trans('auth_forms.social_r') }} <i class="fab fa-facebook mr-2"></i>
             </a>
             <a href="#" class="btn btn-block btn-danger">
-                <i class="fab fa-google-plus mr-2"></i>
-                Sign up using Google+
+                {{ trans('auth_forms.social_r') }} <i class="fab fa-google-plus mr-2"></i>
             </a>
         </div>
 
-        <a href="{{ route('login') }}" class="text-center">I already have a membership</a>
+        <a href="{{ route('login') }}" class="text-center">{{ trans('auth_forms.already_signup') }}</a>
     </div>
 </div>
 @endsection
