@@ -5,9 +5,8 @@ Index
 @endsection
 
 @section('content')
-
 <div class="card">
-    <div class="card-header">Dashboard</div>
+    <div class="card-header"></div>
 
     <div class="card-body">
         @if (session('status'))
@@ -15,8 +14,6 @@ Index
                 {{ session('status') }}
             </div>
         @endif
-
-        You are logged in!
     </div>
 </div>
 @endsection
