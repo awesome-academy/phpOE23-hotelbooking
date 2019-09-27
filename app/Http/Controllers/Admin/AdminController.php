@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use Session;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     public function __construct()
     {
@@ -26,11 +26,6 @@ class HomeController extends Controller
     
     public function index()
     {
-        return view('home.home');
-    }
-
-    public function getProfile()
-    {
-        return view('home.profile');
+        return view('admin.home');
     }
 }

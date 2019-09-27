@@ -11,6 +11,7 @@ return [
     'remember' => 'Ghi Nhớ Đăng Nhập',
     'submit_l' => 'Đăng Nhập',
     'submit_r' => 'Đăng Ký',
+    'submit_o' => 'Đăng xuất',
     'or' => 'Hoặc',
     'social_l' => 'Đăng nhập với',
     'social_r' => 'Đăng ký với',
@@ -20,5 +21,8 @@ return [
     'agree' => 'Tôi đồng ý với',
     'terms' => 'ĐKSD',
     'title' => 'Xác thực người dùng',
+    'sure' => 'Bạn có chắc chắn không?',
+    'close' => 'Đóng',
+    'request_logout' => 'Bạn muốn đăng xuất?',
 
 ];

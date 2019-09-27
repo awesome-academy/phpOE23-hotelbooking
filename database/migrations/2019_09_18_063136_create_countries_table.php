@@ -17,6 +17,7 @@ class CreateCountriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->string('phone_code')->unique();
+            $table->string('lang_code');
             $table->text('description')->nullable();
             $table->timestamps();
         });
