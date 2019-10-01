@@ -17,6 +17,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
+    Route::get('/lang/{lang}', 'Admin\AdminController@changeLang')->name('admin-change-lang');
+
+    Route::get('/index', 'Admin\AdminController@index')->name('admin-index');
+});
+
 Route::group(['prefix' => 'home'], function () {
+    Route::get('/lang/{lang}', 'Home\HomeController@changeLang')->name('home-change-lang');
+
 	Route::get('/index', 'Home\HomeController@index')->name('home-index');
+	Route::get('/profile', 'Home\HomeController@getProfile')->name('home-profile');
 });

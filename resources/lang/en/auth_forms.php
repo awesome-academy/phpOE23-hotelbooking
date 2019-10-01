@@ -11,6 +11,7 @@ return [
     'remember' => 'Remember Me',
     'submit_l' => 'Login',
     'submit_r' => 'Signup',
+    'submit_o' => 'Logout',
     'or' => 'OR',
     'social_l' => 'Login using',
     'social_r' => 'Signup using',
@@ -20,5 +21,8 @@ return [
     'agree' => 'I agree to the',
     'terms' => 'Terms',
     'title' => 'Auth',
+    'sure' => 'Are you sure?',
+    'close' => 'Close',
+    'request_logout' => 'You want to log out?',
 
 ];
