@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ asset('bower_components/adminlte3/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bower_components/adminlte3/plugins/toastr/toastr.min.css') }}">
     <link href="{{ asset('bower_components/adminlte3/googleapis.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bower_components/adminlte3/plugins/toastr/toastr.min.css') }}">
     @yield('css')
 </head>
 <body class="hold-transition sidebar-mini">
@@ -78,7 +79,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         @foreach ( $langs as $lang )
-                            <a class="nav-link" href=#> {{ $lang->name }} ( {{ $lang->lang_code }} ) </a>
+                            <a class="nav-link" href="{{ route('admin-change-lang', ['locale' => $lang->lang_code]) }}"> {{ $lang->name }} ( {{ $lang->lang_code }} ) </a>
                         @endforeach
                     </div>
                 </li>
@@ -151,9 +152,10 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                            <a href="{{ route('admin-users-index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
                                 <p>
+                                    {{ trans('admin.users_title') }}
                                     <span class="right badge badge-danger"></span>
                                 </p>
                             </a>

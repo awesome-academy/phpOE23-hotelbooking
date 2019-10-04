@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Models\Country;
+use App\Repositories\UserRepository;
+use App\Repositories\CountryRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -52,7 +54,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
             'country_id' => ['required'],
             'phone' => ['unique:users'],
 
@@ -67,17 +69,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $repository = new UserRepository();
+        $user = $repository->create([
             'name' => $data['name'],
+            'country_id' => $data['country_id'],
+            'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
 
         ]);
+        $user->attachRole(config('default.init_role'));
+
+        return $user;
     }
 
     public function showRegistrationForm()
     {
-        $countries = Country::all();
+        $repository = new CountryRepository();
+        $countries = $repository->all();
+
         return view('auth.register', compact('countries'));
     }
 }

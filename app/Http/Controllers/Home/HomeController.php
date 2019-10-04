@@ -12,9 +12,7 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        $langs = Country::all();
 
-        View::share('langs', $langs);
     }
 
     public function changeLang($lang)
