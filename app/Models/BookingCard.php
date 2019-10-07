@@ -13,12 +13,12 @@ class BookingCard extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function booking_card_status()
+    public function bookingCardStatus()
     {
         return $this->hasOne(BookingCardStatus::class, 'card_id');
     }
 
-    public function booking_card_details()
+    public function bookingCardDetails()
     {
         return $this->hasMany(BookingCardDetail::class, 'card_id');
     }

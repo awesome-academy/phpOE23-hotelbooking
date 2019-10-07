@@ -11,11 +11,18 @@
 @endsection
 
 @section('content')
-<form method="post" action="#">
+@if (session('warning'))
+    <div class="alert alert-warning" role="alert">
+        <strong> {{ session('warning') }} </strong>
+    </div>
+@endif
+
+<form method="post" action="{{ route('home-search') }}">
+    {{ csrf_field() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-7">
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -44,19 +51,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">
-                                    <i class="fas fa-tachometer-alt"></i>
-                                </span>
-                            </div>
-                            <input type="text" class="form-control float-right" id="date-diff" name="daterange-len">
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div class="row">
@@ -68,7 +62,12 @@
                                     <i class="fa fa-male"></i>
                                 </span>
                             </div>
-                            <input type="number" class="form-control" min="{{ config('default.adult_min') }}" max="{{ config('default.adult_max') }}" name="adult-count" placeholder="{{ trans('home.adult_num') }}">
+                            <input type="number" class="form-control @error('adult-count') is-invalid @enderror" min="{{ config('default.adult_min') }}" max="{{ config('default.adult_max') }}" name="adult-count" value="{{ old('adult-count') }}" placeholder="{{ trans('home.adult_num') }}">
+                            @error('adult-count')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -81,7 +80,12 @@
                                     <i class="fa fa-child"></i>
                                 </span>
                             </div>
-                            <input type="number" class="form-control" min="{{ config('default.children_min') }}" max="{{ config('default.children_max') }}" name="children-count" placeholder="{{ trans('home.children_num') }}">
+                            <input type="number" class="form-control @error('children-count') is-invalid @enderror" min="{{ config('default.children_min') }}" max="{{ config('default.children_max') }}" name="children-count" value="{{ old('children-count') }}" placeholder="{{ trans('home.children_num') }}">
+                            @error('children-count')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -94,7 +98,12 @@
                                     <i class="fa fa-home"></i>
                                 </span>
                             </div>
-                            <input type="number" class="form-control" min="{{ config('default.room_min') }}" max="{{ config('default.room_max') }}" name="room-count" placeholder="{{ trans('home.room_num') }}">
+                            <input type="number" class="form-control @error('room-count') is-invalid @enderror" min="{{ config('default.room_min') }}" max="{{ config('default.room_max') }}" name="room-count" value="{{ old('room-count') }}" placeholder="{{ trans('home.room_num') }}">
+                            @error('room-count')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                 </div>

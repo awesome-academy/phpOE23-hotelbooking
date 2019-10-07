@@ -13,7 +13,7 @@ class Price extends Model
         return $this->belongsTo(Hotel::class, 'hotel_id');
     }
 
-    public function room_type()
+    public function roomType()
     {
         return $this->belongsTo(RoomType::class, 'room_type_id');
     }
