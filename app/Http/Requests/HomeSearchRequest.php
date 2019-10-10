@@ -13,7 +13,7 @@ class HomeSearchRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,9 @@ class HomeSearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'daterange-len' => 'max: 30',
             'adult-count' => 'required',
             'children-count' => 'required',
-            'room-count' => 'required| max: ',
+            'room-count' => 'required',
 
         ];
     }
@@ -35,12 +34,10 @@ class HomeSearchRequest extends FormRequest
     public function message()
     {
         return [
-            'daterange-len.max' => trans('home.search_daterange_len'),
             'adult-count.required' => trans('home.search_adult_count'),
             'children-count.required' => trans('home.search_children_count'),
             'room-count.required' => trans('home.search_room_count'),
-            'room-count.max' => trans('home.search_room_count_max'),
 
-        ]
+        ];
     }
 }

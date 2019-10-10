@@ -13,7 +13,7 @@ class Hotel extends Model
         return $this->belongsTo(City::class, 'city_id');
     }
 
-    public function room_quantities()
+    public function roomQuantities()
     {
         return $this->hasMany(RoomQuantity::class, 'hotel_id');
     }

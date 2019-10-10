@@ -32,5 +32,8 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/lang/{lang}', 'Home\HomeController@changeLang')->name('home-change-lang');
 
     Route::get('/index', 'Home\HomeController@index')->name('home-index');
-    Route::get('/profile', 'Home\HomeController@getProfile')->name('home-profile');
+    
+    Route::get('/profile', 'Home\HomeController@getProfile')->middleware('auth')->name('home-profile');
+
+    Route::post('/search', 'Home\BookingController@search')->name('home-search');
 });

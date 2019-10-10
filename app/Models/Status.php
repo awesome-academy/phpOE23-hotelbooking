@@ -8,7 +8,7 @@ class Status extends Model
 {
     protected $table = 'statuses';
 
-    public function booking_card_statuses()
+    public function bookingCardStatuses()
     {
         return $this->hasMany(BookingCardStatus::class, 'status_id');
     }

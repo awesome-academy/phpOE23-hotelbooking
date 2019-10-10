@@ -8,12 +8,12 @@ class BookingCardDetail extends Model
 {
     protected $table = 'booking_card_details';
     
-    public function booking_card()
+    public function bookingCard()
     {
         return $this->belongsTo(BookingCard::class, 'card_id');
     }
 
-    public function room_type()
+    public function roomType()
     {
         return $this->belongsTo(RoomType::class, 'room_type_id');
     }

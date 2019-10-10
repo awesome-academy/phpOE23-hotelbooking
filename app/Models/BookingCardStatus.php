@@ -8,7 +8,7 @@ class BookingCardStatus extends Model
 {
     protected $table = 'booking_card_statuses';
 
-    public function booking_card()
+    public function bookingCard()
     {
         return $this->belongsTo(BookingCard::class, 'card_id');
     }
