@@ -12,28 +12,32 @@
 */
 
 Route::get('/', function () {
-    return redirect()->route('home-index');
+    return redirect()->route('home_index');
 });
 
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin|root']], function () {
-    Route::get('/lang/{lang}', 'Admin\AdminController@changeLang')->name('admin-change-lang');
+    Route::get('/lang/{lang}', 'Admin\AdminController@changeLang')->name('admin_change_lang');
 
-    Route::get('/index', 'Admin\AdminController@index')->name('admin-index');
+    Route::get('/index', 'Admin\AdminController@index')->name('admin_index');
 
     Route::group(['prefix' => 'users'], function () {
-        Route::get('/index', 'Admin\UserController@index')->name('admin-users-index');
-        Route::post('/update/{id}', 'Admin\UserController@update')->name('admin-users-update');
+        Route::get('/index', 'Admin\UserController@index')->name('admin_users_index');
+        Route::post('/update/{id}', 'Admin\UserController@update')->name('admin_users_update');
     });
 });
 
 Route::group(['prefix' => 'home'], function () {
-    Route::get('/lang/{lang}', 'Home\HomeController@changeLang')->name('home-change-lang');
+    Route::get('/lang/{lang}', 'Home\HomeController@changeLang')->name('home_change_lang');
 
-    Route::get('/index', 'Home\HomeController@index')->name('home-index');
+    Route::get('/index', 'Home\HomeController@index')->name('home_index');
     
-    Route::get('/profile', 'Home\HomeController@getProfile')->middleware('auth')->name('home-profile');
+    Route::get('/profile', 'Home\HomeController@getProfile')->middleware('auth')->name('home_profile');
+    Route::post('/profile-ava', 'Home\ProfileController@updateAvatar')->middleware('auth')->name('home_profile_ava');
 
-    Route::post('/search', 'Home\BookingController@search')->name('home-search');
+    Route::post('/search', 'Home\BookingController@search')->name('home_search');
+
+    Route::get('/booking/{id}', 'Home\BookingController@getBookingForm')->middleware('auth')->name('home_booking');
+    Route::post('/booking-rooms', 'Home\BookingController@booking')->middleware('auth')->name('home_booking_post');
 });
