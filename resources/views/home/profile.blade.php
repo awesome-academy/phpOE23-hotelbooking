@@ -11,7 +11,11 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                     <div class="text-center">
-                        <img class="profile-user-img img-fluid img-circle" src="" alt="{{ trans('profile.alt') }}">
+                        @if (Auth::user()->image == config('default.null_path'))
+                            <img class="profile-user-img img-fluid img-circle" src="{{ asset('bower_components/adminlte3/default_user.jpg') }}" alt="{{ trans('profile.alt') }}">
+                        @else
+                            <img class="profile-user-img img-fluid img-circle" src="{{ asset('/storage/' . Auth::user()->image) }}" alt="{{ trans('profile.alt') }}">
+                        @endif
                     </div>
                     <h3 class="profile-username text-center"> {{ Auth::user()->name }} </h3>
                     <p class="text-muted text-center">
@@ -87,7 +91,7 @@
                 <div class="modal-body">
                     <p> {{ trans('profile.choose_pic') }} </p>
                 </div>
-                <form method="post" action="#">
+                <form method="post" action="{{ route('home-profile-ava') }}">
                     {{ csrf_field() }}
                     <input class="form-control" type="file" name="pic" accept="image/*" enctype="multipart/form-data">
                     <div class="modal-footer justify-content-between">

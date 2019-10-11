@@ -13,7 +13,7 @@ class Notification extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function notification_type()
+    public function notificationType()
     {
         return $this->belongsTo(NotificationType::class, 'user_id');
     }
