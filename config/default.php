@@ -20,5 +20,6 @@ return [
     'null_path' => '""',
 
     'sql_date_format' => 'Y-m-d',
+    'init_status' => '1',
 
 ];

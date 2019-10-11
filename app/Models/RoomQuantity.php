@@ -12,4 +12,9 @@ class RoomQuantity extends Model
     {
         return $this->belongsTo(Hotel::class, 'hotel_id');
     }
+
+    public function roomType()
+    {
+        return $this->belongsTo(RoomType::class, 'room_type_id');
+    }
 }
