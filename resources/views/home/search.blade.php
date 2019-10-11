@@ -28,7 +28,7 @@
                         @endforeach
                     </ul>
                     @auth
-                        <a class="btn btn-primary float-right" href="#">
+                        <a class="btn btn-primary float-right" href="{{ route('home_booking', ['id' => $hotel->id]) }}">
                             {{ trans('search.book') }}
                         </a>
                     @endauth
