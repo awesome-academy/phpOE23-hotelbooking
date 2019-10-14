@@ -13,7 +13,7 @@ class Currency extends Model
         return $this->hasMany(Price::class, 'currency_id');
     }
 
-    public function booking_card_status()
+    public function bookingCardStatus()
     {
         return $this->hasMany(BookingCardStatus::class, 'currency_id');
     }
