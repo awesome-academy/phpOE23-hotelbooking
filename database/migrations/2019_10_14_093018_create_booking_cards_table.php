@@ -16,7 +16,7 @@ class CreateBookingCardsTable extends Migration
         Schema::create('booking_cards', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id');
-            $table->varchar('card_code');
+            $table->string('card_code');
             $table->integer('hotel_id');
             $table->integer('adult_quantity');
             $table->integer('children_quantity');

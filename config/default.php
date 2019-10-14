@@ -3,7 +3,7 @@
 return [
     'yes' => '1',
     'no' => '0',
-    'init_role' => 'normal',
+    'init_role' => '1',
     'hard_roles' => [
         'normal',
         'root',
