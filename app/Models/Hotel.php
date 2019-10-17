@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     protected $table = 'hotels';
+    protected $fillable = [
+        'city_id',
+        'name',
+        'address',
+        'phone',
+        'email',
+        'rating',
+        'image',
+        
+    ];
 
     public function city()
     {
@@ -26,5 +36,10 @@ class Hotel extends Model
     public function services()
     {
         return $this->belongsToMany(Hotel::class, 'hotel_service');
+    }
+
+    public function bookingCards()
+    {
+        return $this->hasmany(BookingCard::class, 'hotel_id');
     }
 }

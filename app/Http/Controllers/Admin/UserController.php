@@ -4,16 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repositories\UserRepository;
-use App\Repositories\RoleRepository;
+use App\Repositories\Interfaces\UserContract;
+use App\Repositories\Interfaces\RoleContract;
 
 class UserController extends AdminController
 {
-    protected $repository;
+    protected $userRepo;
+    protected $roleRepo;
 
-    public function __construct()
+    public function __construct(UserContract $user, RoleContract $role)
     {
-        $this->repository = new UserRepository();
+        $this->userRepo = $user;
+        $this->roleRepo = $role;
     }
 
     /**
@@ -23,9 +25,8 @@ class UserController extends AdminController
      */
     public function index()
     {
-        $users = $this->repository->all();
-        $roleRepository = new RoleRepository();
-        $roles = $roleRepository->all();
+        $users = $this->userRepo->all();
+        $roles = $this->roleRepo->all();
 
         return view('admin.users', compact('users', 'roles'));
     }
@@ -82,9 +83,8 @@ class UserController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        $user = $this->repository->getById($id);
-        $roleRepository = new RoleRepository();
-        $roles = $roleRepository->all(); 
+        $user = $this->userRepo->getById($id);
+        $roles = $this->roleRepo->all();
 
         foreach ($user->roles as $role) {
             if (! in_array($role->name, config('default.hard_roles'))) {
@@ -93,12 +93,12 @@ class UserController extends AdminController
         }
 
         foreach ($roles as $role) {
-            if ($request->get('role-' . $role->id) == config('default.yes')) {
+            if ($request->get(config('default.rolerq') . $role->id) == config('default.yes')) {
                 $user->attachRole($role->id);
             }
         }
 
-        return redirect()->route('admin-users-index')->with('message', trans('admin.user_update'));
+        return redirect()->route('admin_users_index')->with('message', trans('admin.user_update'));
     }
 
     /**
