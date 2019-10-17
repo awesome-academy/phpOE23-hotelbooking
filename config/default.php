@@ -22,5 +22,6 @@ return [
     'sql_date_format' => 'Y-m-d',
 
     'rq' => 'rq-',
+    'role' => 'role-',
 
 ];

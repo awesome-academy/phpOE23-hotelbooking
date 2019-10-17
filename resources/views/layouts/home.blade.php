@@ -43,17 +43,17 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <div>
-                                    <button class="dropdown-item btn btn-default" href="{{ route('home_profile') }}">
+                                    <a class="dropdown-item btn btn-default" href="{{ route('home_profile') }}">
                                         <i class="fa fa-folder-open"></i>
                                         &nbsp;&nbsp;{{ trans('home.page_profile') }}
-                                    </button>
+                                    </a>
                                 </div>
 
                                 <div>
-                                    <a class="dropdown-item btn btn-danger" data-toggle="modal" data-target="#logout-modal">
+                                    <button class="dropdown-item btn btn-danger" data-toggle="modal" data-target="#logout-modal">
                                         <i class="fa fa-lock"></i>
                                         &nbsp;&nbsp;{{ trans('auth_forms.submit_o') }}
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         @endguest
