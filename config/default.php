@@ -3,7 +3,7 @@
 return [
     'yes' => '1',
     'no' => '0',
-    'init_role' => 'normal',
+    'init_role' => '1',
     'hard_roles' => [
         'normal',
         'root',
@@ -20,5 +20,8 @@ return [
     'null_path' => '""',
 
     'sql_date_format' => 'Y-m-d',
+
+    'rq' => 'rq-',
+    'role' => 'role-',
 
 ];

@@ -22,7 +22,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ route('home-index') }}" class="nav-link"> {{ trans('home.parent_page_h') }} </a>
+                    <a href="{{ route('home_index') }}" class="nav-link"> {{ trans('home.parent_page_h') }} </a>
                 </li>
             </ul>
             <form class="form-inline ml-3">
@@ -79,7 +79,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         @foreach ( $langs as $lang )
-                            <a class="nav-link" href="{{ route('admin-change-lang', ['locale' => $lang->lang_code]) }}"> {{ $lang->name }} ( {{ $lang->lang_code }} ) </a>
+                            <a class="nav-link" href="{{ route('admin_change_lang', ['locale' => $lang->lang_code]) }}"> {{ $lang->name }} ( {{ $lang->lang_code }} ) </a>
                         @endforeach
                     </div>
                 </li>
@@ -152,7 +152,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin-users-index') }}" class="nav-link">
+                            <a href="{{ route('admin_users_index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     {{ trans('admin.users_title') }}

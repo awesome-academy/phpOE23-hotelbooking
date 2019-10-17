@@ -17,7 +17,7 @@
     </div>
 @endif
 
-<form method="post" action="{{ route('home-search') }}">
+<form method="post" action="{{ route('home_search') }}">
     {{ csrf_field() }}
     <div class="card">
         <div class="card-body">
