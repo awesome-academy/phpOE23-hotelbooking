@@ -93,7 +93,7 @@ class UserController extends AdminController
         }
 
         foreach ($roles as $role) {
-            if ($request->get('role-' . $role->id) == config('default.yes')) {
+            if ($request->get(config('default.role') . $role->id) == config('default.yes')) {
                 $user->attachRole($role->id);
             }
         }

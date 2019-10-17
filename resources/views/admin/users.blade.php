@@ -64,7 +64,7 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form method="post" action="{{ route('admin-users-update', ['id' => $user->id]) }}">
+                                        <form method="post" action="{{ route('admin_users_update', ['id' => $user->id]) }}">
                                             {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <table>
