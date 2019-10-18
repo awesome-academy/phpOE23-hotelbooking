@@ -12,4 +12,11 @@ class CurrencyRepository extends BaseRepository implements CurrencyContract
     {
         return Currency::class;
     }
+
+    public function getRatio($id)
+    {
+        $currency = $this->getById($id)->first();
+
+        return $currency->exchange_ratio;
+    }
 }

@@ -22,7 +22,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ route('home-index') }}" class="nav-link"> {{ trans('home.parent_page_h') }} </a>
+                    <a href="{{ route('home_index') }}" class="nav-link"> {{ trans('home.parent_page_h') }} </a>
                 </li>
             </ul>
             <form class="form-inline ml-3">
@@ -79,7 +79,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         @foreach ( $langs as $lang )
-                            <a class="nav-link" href="{{ route('admin-change-lang', ['locale' => $lang->lang_code]) }}"> {{ $lang->name }} ( {{ $lang->lang_code }} ) </a>
+                            <a class="nav-link" href="{{ route('admin_change_lang', ['locale' => $lang->lang_code]) }}"> {{ $lang->name }} ( {{ $lang->lang_code }} ) </a>
                         @endforeach
                     </div>
                 </li>
@@ -152,10 +152,66 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin-users-index') }}" class="nav-link">
+                            <a href="{{ route('admin_users_index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     {{ trans('admin.users_title') }}
+                                    <span class="right badge badge-danger"></span>
+                                </p>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-star"></i>
+                                <p>
+                                    {{ trans('admin.roles_title') }}
+                                    <span class="right badge badge-danger"></span>
+                                </p>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-indent"></i>
+                                <p>
+                                    {{ trans('admin.permissions_title') }}
+                                    <span class="right badge badge-danger"></span>
+                                </p>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-flag"></i>
+                                <p>
+                                    {{ trans('admin.countries_title') }}
+                                    <span class="right badge badge-danger"></span>
+                                </p>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-road"></i>
+                                <p>
+                                    {{ trans('admin.cities_title') }}
+                                    <span class="right badge badge-danger"></span>
+                                </p>
+                            </a>
+                            <a href="{{ route('admin_hotels_index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>
+                                    {{ trans('admin.hotels_title') }}
+                                    <span class="right badge badge-danger"></span>
+                                </p>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-bed"></i>
+                                <p>
+                                    {{ trans('admin.room_types_title') }}
+                                    <span class="right badge badge-danger"></span>
+                                </p>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-bookmark"></i>
+                                <p>
+                                    {{ trans('admin.booking_cards_title') }}
+                                    <span class="right badge badge-danger"></span>
+                                </p>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-square"></i>
+                                <p>
+                                    {{ trans('admin.currencies_title') }}
                                     <span class="right badge badge-danger"></span>
                                 </p>
                             </a>

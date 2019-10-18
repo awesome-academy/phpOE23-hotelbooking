@@ -17,10 +17,13 @@ return [
     'room_min' => '1',
     'room_max' => '8',
     'show_limit' => '5',
-    'null_path' => '""',
+    'null_path' => '',
     'init_status' => '1',
     'sql_date_format' => 'Y-m-d',
     'rolerq' => 'role-',
     'rq' => 'rq-',
+    'pricerq' => 'price-',
+    'currencyrq' => 'currency-',
+    'roomquantityrq' => 'room-quantity-',
 
 ];

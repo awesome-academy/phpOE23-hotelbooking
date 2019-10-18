@@ -8,6 +8,14 @@ class Price extends Model
 {
     protected $table = 'prices';
 
+    protected $fillable = [
+        'hotel_id',
+        'room_type_id',
+        'amount',
+        'currency_id',
+        
+    ];
+
     public function hotel()
     {
         return $this->belongsTo(Hotel::class, 'hotel_id');

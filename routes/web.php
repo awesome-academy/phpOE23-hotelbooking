@@ -26,6 +26,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin|root']],
         Route::get('/index', 'Admin\UserController@index')->name('admin_users_index');
         Route::post('/update/{id}', 'Admin\UserController@update')->name('admin_users_update');
     });
+
+    Route::group(['prefix' => 'hotels'], function () {
+        Route::get('/index', 'Admin\HotelController@index')->name('admin_hotels_index');
+        Route::post('/store', 'Admin\HotelController@store')->name('admin_hotels_store');
+        Route::post('/update/{id}', 'Admin\HotelController@update')->name('admin_hotels_update');
+        Route::post('/delete/{id}', 'Admin\HotelController@destroy')->name('admin_hotels_delete');
+    });
 });
 
 Route::group(['prefix' => 'home'], function () {
