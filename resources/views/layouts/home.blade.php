@@ -11,207 +11,149 @@
     <link rel="stylesheet" href="{{ asset('bower_components/adminlte3/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('bower_components/adminlte3/plugins/toastr/toastr.min.css') }}">
     <link href="{{ asset('bower_components/adminlte3/googleapis.css') }}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ asset('bower_components/adminlte3/custom/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bower_components/adminlte3/custom/css/font-awesome.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('bower_components/adminlte3/custom/css/style.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('bower_components/adminlte3/custom/css/custom.css') }}" />
     @yield('css')
 </head>
-<body class="hold-transition sidebar-mini">
-    <div class="wrapper">
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="{{ route('home-index') }}" class="nav-link">{{ trans('home.parent_page_h') }}</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto">
-                @auth
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="#">
-                            <i class="far fa-bell"></i>
-                            <span class="badge badge-warning navbar-badge"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <span class="dropdown-header">  </span>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                            	<span class="float-right text-muted text-sm"></span>
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item dropdown-footer">{{ trans('home.see_all_noti') }}</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="#">
-                            <i class="far fa-user"></i>
-                            <span class="badge badge-warning navbar-badge"></span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <span class="dropdown-header"><b> {{ trans('home.hello') }}, {{ Auth::user()->name }} </b></span>
-                            <span class="dropdown-header"><b> {{ trans('home.basic_info') }} </b></span>
-                            <span class="dropdown-header"> {{ Auth::user()->email }} </span>
-                            <span class="dropdown-header"> {{ Auth::user()->country->phone_code }} {{ Auth::user()->phone }} </span>
-                            <div class="dropdown-divider"></div>
-                            <a href="{{ route('home-profile') }}" class="dropdown-item">
-                                <i class="fa fa-user"></i>&nbsp;&nbsp; {{ trans('home.page_profile') }}
-                            </a>
-                            <div class="dropdown-divider"></div>
 
-                            @if (Auth::user()->hasRole('admin'))
-                                <a href="{{ route('admin-index') }}" class="dropdown-item">
-                                    <i class="fa fa-child"></i>&nbsp;&nbsp; {{ trans('home.parent_page_a') }}
+<body class="hold-transition sidebar-mini">
+    <header id="header">
+        <div id="nav">
+            <div id="nav-top">
+                <div class="container">
+                    <div class="nav-logo">
+                        <a href="{{ route('home_index') }}" class="logo">
+                            <img src="{{ asset('bower_components/adminlte3/custom/img/banner.jpg') }}" alt="">
+                        </a>
+                    </div>
+
+                    <div class="nav-btns">
+                        @guest
+                            <a class="btn btn-default" href="{{ route('login') }}" role="button">
+                                <i class="fa fa-key"></i>
+                            </a>
+                            @if (Route::has('register'))
+                                <a class="btn btn-default" href="{{ route('register') }}" role="button">
+                                    <i class="fa fa-user-plus"></i>
                                 </a>
                             @endif
-                            
-                            <div class="dropdown-divider"></div>
-                            <button class="dropdown-item btn btn-danger" type="button" data-toggle="modal" data-target="#logout-modal">
-                                <i class="fa fa-lock"></i>&nbsp;&nbsp; {{ trans('auth_forms.submit_o') }}
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="fa fa-user"></i>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <div>
+                                        <a class="dropdown-item btn btn-default" href="{{ route('home_profile') }}">
+                                            <i class="fa fa-folder-open"></i>
+                                            &nbsp;&nbsp;{{ trans('home.page_profile') }}
+                                        </a>
+                                    </div>
+
+                                    <div>
+                                        <button class="dropdown-item btn btn-danger" type="button" data-toggle="modal" data-target="#logout-modal">
+                                            <i class="fa fa-lock"></i>
+                                            &nbsp;&nbsp;{{ trans('auth_forms.submit_o') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </li>
+                        @endguest
+
+                        <button class="aside-btn"><i class="fa fa-language"></i></button>
+                        <button class="search-btn"><i class="fa fa-search"></i></button>
+                        <div id="nav-search">
+                            <form method="post" action="#">
+                                {{ csrf_field() }}
+                                <input class="input" name="search">
+                            </form>
+                            <button class="nav-close search-close">
+                                <span></span>
                             </button>
                         </div>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">
-                            <i class="fa fa-key"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">
-                            <i class="fa fa-user-plus"></i>
-                        </a>
-                    </li>
-                @endauth
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="fab fa-acquisitions-incorporated"></i>
-                        <span class="badge badge-warning navbar-badge"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        @foreach ( $langs as $lang )
-                            <a class="nav-link" href="{{ route('home-change-lang', ['locale' => $lang->lang_code]) }}"> {{ $lang->name }} ( {{ $lang->lang_code }} ) </a>
-                        @endforeach
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-                    <i class="fas fa-th-large"></i></a>
-                </li>
-            </ul>
-        </nav>
-        <div class="modal fade" id="logout-modal">
-            <div class="modal-dialog">
-                <div class="modal-content bg-danger">
-                    <div class="modal-header">
-                        <h4 class="modal-title"> {{ trans('auth_forms.sure') }} </h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p> {{ trans('auth_forms.request_logout') }} </p>
-                    </div>
-                    <form method="post" action="{{ route('logout') }}">
-                        {{ csrf_field() }}
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                {{ trans('auth_forms.close') }}
-                            </button>
-                            <button type="submit" class="btn btn-outline-light">
-                                {{ trans('auth_forms.submit_o') }}
-                            </button>
-                        </div>
-                    </form>
                 </div>
+            </div>
+
+            <div id="nav-aside">
+                <ul class="nav-aside-menu">
+                    @foreach ($langs as $lang)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home_change_lang', ['lang' => $lang->lang_code]) }}">
+                                {{ $lang->name }} ({{ $lang->lang_code }})
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+                <button class="nav-close nav-aside-close"><span></span></button>
             </div>
         </div>
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="#" class="brand-link">
-                <img src="{{ asset('bower_components/adminlte3/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
-                <span class="brand-text font-weight-light">{{ trans('home.name') }}</span>
-            </a>
-            <div class="sidebar">
-                @auth
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="{{ asset('bower_components/adminlte3/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-                    </div>
-                </div>
-                @else
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <a href="{{ route('login') }}" class="btn-block btn-lg btn-secondary"> {{ trans('home.already_signup') }} </a>
-                </div>
-                @endauth
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-        <div class="content-wrapper">
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">{{ trans('home.name') }} {{ trans('home.parent_page_h') }}</h1>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">{{ trans('home.parent_page_h') }}</a></li>
-                                <li class="breadcrumb-item active">@yield('title')</li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="content">
-                <div class="container-fluid">
+    </header>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
                     @yield('content')
                 </div>
             </div>
         </div>
-        <aside class="control-sidebar control-sidebar-dark">
-            <div class="p-3">
-                <h5></h5>
-                <p></p>
-            </div>
-        </aside>
-        <footer class="main-footer">
-        </footer>
     </div>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-bottom row">
+                <div class="col-md-6 col-md-push-3 text-center">
+                    <div class="footer-copyright">
+                        {{ trans('home.name') }} &copy;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="logout-modal">
+        <div class="modal-dialog">
+            <div class="modal-content bg-danger">
+                <div class="modal-header">
+                    <h4 class="modal-title"> {{ trans('auth_forms.sure') }} </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p> {{ trans('auth_forms.request_logout') }} </p>
+                </div>
+                <form method="post" action="{{ route('logout') }}">
+                    {{ csrf_field() }}
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            {{ trans('auth_forms.close') }}
+                        </button>
+                        <button type="submit" class="btn btn-outline-light">
+                            {{ trans('auth_forms.submit_o') }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ asset('bower_components/adminlte3/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('bower_components/adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('bower_components/adminlte3/dist/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('bower_components/adminlte3/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('bower_components/adminlte3/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('bower_components/adminlte3/plugins/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('bower_components/adminlte3/custom/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('bower_components/adminlte3/custom/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.stellar.min.js') }}"></script>
+    <script src="{{ asset('bower_components/adminlte3/custom/js/main.js') }}"></script>
+    <script src="{{ asset('bower_components/adminlte3/custom/js/custom.js') }}"></script>
     @yield('js')
 </body>
 </html>

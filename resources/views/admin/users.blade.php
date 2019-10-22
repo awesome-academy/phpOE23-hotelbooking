@@ -47,7 +47,7 @@
                     <td> {{ $user->created_at }} </td>
                     <td>
                         @if ($user->id != Auth::user()->id)
-                            <button class="dropdown-item btn btn-default" type="button" data-toggle="modal" data-target="#edit-roles-modal-{{ $user->id }}">
+                            <button class="btn btn-default" type="button" data-toggle="modal" data-target="#edit-roles-modal-{{ $user->id }}">
                                 <ul>
                                     @foreach ($user->roles as $role)
                                         <li> {{ $role->name }} </li>
@@ -64,10 +64,16 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
-                                        <form method="post" action="{{ route('admin-users-update', ['id' => $user->id]) }}">
+                                        <form method="post" action="{{ route('admin_users_update', ['id' => $user->id]) }}">
                                             {{ csrf_field() }}
                                             <div class="modal-body">
                                                 <table>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td>{{ config('default.yes') }}</td>
+                                                        <td>{{ config('default.no') }}</td>
+                                                    </tr>
+
                                                     @foreach ($roles as $role)
                                                         @if (($role->name != 'normal') && ($role->name != 'root'))
                                                             <tr>
@@ -75,50 +81,50 @@
                                                                 @role('root')
                                                                     @if ($user->hasRole($role->name))
                                                                         <td>
-                                                                            <input type="radio" name="role-{{ $role->id }}" value="1" checked>
+                                                                            <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="1" checked>
                                                                         </td>
                                                                         <td>
-                                                                            <input type="radio" name="role-{{ $role->id }}" value="0">
+                                                                            <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="0">
                                                                         </td>
                                                                     @else
                                                                         <td>
-                                                                            <input type="radio" name="role-{{ $role->id }}" value="1">
+                                                                            <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="1">
                                                                         </td>
                                                                         <td>
-                                                                            <input type="radio" name="role-{{ $role->id }}" value="0" checked>
+                                                                            <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="0" checked>
                                                                         </td>
                                                                     @endif
                                                                 @else
                                                                     @if ($role->name == 'admin')
                                                                         @if ($user->hasRole($role->name))
                                                                             <td>
-                                                                                <input type="radio" name="role-{{ $role->id }}" value="1" checked readonly>
+                                                                                <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="1" checked readonly>
                                                                             </td>
                                                                             <td>
-                                                                                <input type="radio" name="role-{{ $role->id }}" value="0" readonly>
+                                                                                <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="0" readonly>
                                                                             </td>
                                                                         @else
                                                                             <td>
-                                                                                <input type="radio" name="role-{{ $role->id }}" value="1" readonly>
+                                                                                <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="1" readonly>
                                                                             </td>
                                                                             <td>
-                                                                                <input type="radio" name="role-{{ $role->id }}" value="0" checked readonly>
+                                                                                <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="0" checked readonly>
                                                                             </td>
                                                                         @endif
                                                                     @else
                                                                         @if ($user->hasRole($role->name))
                                                                             <td>
-                                                                                <input type="radio" name="role-{{ $role->id }}" value="1" checked>
+                                                                                <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="1" checked>
                                                                             </td>
                                                                             <td>
-                                                                                <input type="radio" name="role-{{ $role->id }}" value="0">
+                                                                                <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="0">
                                                                             </td>
                                                                         @else
                                                                             <td>
-                                                                                <input type="radio" name="role-{{ $role->id }}" value="1">
+                                                                                <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="1">
                                                                             </td>
                                                                             <td>
-                                                                                <input type="radio" name="role-{{ $role->id }}" value="0" checked>
+                                                                                <input type="radio" name="{{ config('default.rolerq') }}{{ $role->id }}" value="0" checked>
                                                                             </td>
                                                                         @endif
                                                                     @endif
