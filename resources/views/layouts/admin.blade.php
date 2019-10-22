@@ -173,14 +173,14 @@
                                     <span class="right badge badge-danger"></span>
                                 </p>
                             </a>
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin_countries_index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-flag"></i>
                                 <p>
                                     {{ trans('admin.countries_title') }}
                                     <span class="right badge badge-danger"></span>
                                 </p>
                             </a>
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin_cities_index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-road"></i>
                                 <p>
                                     {{ trans('admin.cities_title') }}

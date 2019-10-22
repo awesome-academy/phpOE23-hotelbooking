@@ -8,6 +8,13 @@ class Country extends Model
 {
     protected $table = 'countries';
 
+    protected $fillable = [
+    	'name',
+    	'phone_code',
+    	'lang_code',
+    	
+    ];
+
     public function users()
     {
     	return $this->hasMany(User::class, 'country_id');

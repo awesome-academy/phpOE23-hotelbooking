@@ -33,6 +33,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin|root']],
         Route::post('/update/{id}', 'Admin\HotelController@update')->name('admin_hotels_update');
         Route::post('/delete/{id}', 'Admin\HotelController@destroy')->name('admin_hotels_delete');
     });
+
+    Route::group(['prefix' => 'countries'], function () {
+        Route::get('/index', 'Admin\CountryController@index')->name('admin_countries_index');
+        Route::post('/store', 'Admin\CountryController@store')->name('admin_countries_store');
+        Route::post('/update/{id}', 'Admin\CountryController@update')->name('admin_countries_update');
+    });
+
+    Route::group(['prefix' => 'cities'], function () {
+        Route::get('/index', 'Admin\CityController@index')->name('admin_cities_index');
+        Route::post('/store', 'Admin\CityController@store')->name('admin_cities_store');
+        Route::post('/update/{id}', 'Admin\CityController@update')->name('admin_cities_update');
+    });
 });
 
 Route::group(['prefix' => 'home'], function () {
