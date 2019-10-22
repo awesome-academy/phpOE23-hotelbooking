@@ -23,8 +23,23 @@ return [
 
     'roles_title' => 'Roles',
     'permissions_title' => 'Permissions',
+
     'countries_title' => 'Countries',
+    'phone_code' => 'Phone Code',
+    'lang_code' => 'Language',
+    'country_name_rq' => 'Country Name must be set',
+    'country_name_rq2' => 'Country Name must be unique',
+    'phone_code_rq' => 'Phone Code must be set',
+    'phone_code_rq2' => 'Phone Code must be unique',
+    'lang_code_rq' => 'Language Code must be set and contains 2 letters',
+    'country_add_success' => 'A new Country has been added',
+    'country_update_success' => 'A Country has been modified',
+
     'cities_title' => 'Cities',
+    'description' => 'Description',
+    'city_name_rq' => 'City Name must be set',
+    'city_add_success'=> 'A new City has been added',
+    'city_update_success' => 'A City has been modified',
 
     'hotels_title' => 'Hotels',
     'city' => 'City',
