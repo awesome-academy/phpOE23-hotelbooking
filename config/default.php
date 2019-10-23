@@ -1,14 +1,17 @@
 <?php
 
 return [
+    'chunk_size_small' => '3',
+    'chunk_size_big' => '4',
     'yes' => '1',
     'no' => '0',
     'init_role' => '1',
     'hard_roles' => [
         'normal',
         'root',
-
     ],
+    'mincapa' => '1',
+    'maxcapa' => '20',
     'adult_min' => '1',
     'adult_max' => '10',
     'children_min' => '0',
@@ -17,6 +20,7 @@ return [
     'room_min' => '1',
     'room_max' => '8',
     'show_limit' => '5',
+    'show_limit_2' => '8',
     'null_path' => '',
     'init_status' => '1',
     'sql_date_format' => 'Y-m-d',
@@ -25,5 +29,4 @@ return [
     'pricerq' => 'price-',
     'currencyrq' => 'currency-',
     'roomquantityrq' => 'room-quantity-',
-
 ];

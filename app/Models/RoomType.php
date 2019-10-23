@@ -8,6 +8,13 @@ class RoomType extends Model
 {
     protected $table = 'room_types';
 
+    protected $fillable = [
+        'name',
+        'capacity',
+        'description',
+        
+    ];
+
     public function roomQuantities()
     {
         return $this->hasMany(RoomQuantity::class, 'room_type_id');

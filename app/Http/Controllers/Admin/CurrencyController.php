@@ -3,10 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Requests\CurrencyRequest;
+use App\Repositories\Interfaces\CurrencyContract;
 
 class CurrencyController extends Controller
 {
+    protected $currencyRepo;
+
+    public function __construct(CurrencyContract $currency)
+    {
+        $this->currencyRepo = $currency;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,9 @@ class CurrencyController extends Controller
      */
     public function index()
     {
-        //
+        $currencies = $this->currencyRepo->all();
+
+        return view('admin.currencies', compact('currencies'));
     }
 
     /**
@@ -33,9 +44,21 @@ class CurrencyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CurrencyRequest $request)
     {
-        //
+        $name = $request->get('name');
+        $symbol = $request->get('symbol');
+        $ratio = $request->get('ratio');
+
+        $data = [
+            'name' => $name,
+            'symbol' => $symbol,
+            'exchange_ratio' => $ratio,
+        ];
+
+        $this->currencyRepo->create($data);
+
+        return redirect()->route('admin_currencies_index')->with('success', trans('admin.cur_add_success'));
     }
 
     /**
@@ -67,9 +90,21 @@ class CurrencyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CurrencyRequest $request, $id)
     {
-        //
+        $name = $request->get('name');
+        $symbol = $request->get('symbol');
+        $ratio = $request->get('ratio');
+
+        $data = [
+            'name' => $name,
+            'symbol' => $symbol,
+            'exchange_ratio' => $ratio,
+        ];
+
+        $this->currencyRepo->updateByid($id, $data);
+        
+        return redirect()->route('admin_currencies_index')->with('success', trans('admin.cur_update_success'));
     }
 
     /**

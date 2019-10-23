@@ -24,7 +24,19 @@ class RoomTypeRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:room_types',
+            'capacity' => 'required|min:1|max:20',
+
+        ];
+    }
+
+    public function message()
+    {
+        return [
+            'name.required' => trans('admin.rtype_name_rq'),
+            'name.unique' => trans('admin.rtype_name_rq2'),
+            'capacity.required' => trans('admin.rtype_capa_rq'),
+            
         ];
     }
 }

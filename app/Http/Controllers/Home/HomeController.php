@@ -5,18 +5,26 @@ namespace App\Http\Controllers\Home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Http\Controllers\Controller;
-use App\Repositories\CountryRepository;
-use App\Repositories\CityRepository;
-use App\Repositories\HotelRepository;
-use App\Repositories\RoomTypeRepository;
+use App\Repositories\Interfaces\CountryContract;
+use App\Repositories\Interfaces\CityContract;
+use App\Repositories\Interfaces\HotelContract;
 use Session;
 use Illuminate\Support\Collection;
 
 class HomeController extends Controller
 {
-    public function __construct()
-    {
+    protected $countryRepo;
+    protected $cityRepo;
+    protected $hotelRepo;
 
+    public function __construct(
+        CountryContract $country,
+        CityContract $city,
+        HotelContract $hotel
+    ) {
+        $this->countryRepo = $country;
+        $this->cityRepo = $city;
+        $this->hotelRepo = $hotel;
     }
 
     public function changeLang($lang)
@@ -28,16 +36,15 @@ class HomeController extends Controller
     
     public function index()
     {
-        $cityRepository = new CityRepository();
-        $hotelRepository = new HotelRepository();
-        $roomTypeRepository = new RoomTypeRepository();
+        $cities = $this->cityRepo->all();
+        $citiesToShow = $cities->shuffle()->take(config('default.show_limit'));
+        $cityGroup = $citiesToShow->chunk(config('default.chunk_size_small'));
+        
+        $hotels = $this->hotelRepo->all()->shuffle();
+        $hotelsToShow = $hotels->take(config('default.show_limit_2'));
+        $hotelGroup = $hotelsToShow->chunk(config('default.chunk_size_big'));
 
-        $cities = $cityRepository->all();
-        $cityList = $cities->shuffle()->take(config('default.show_limit'));
-        $hotels = $hotelRepository->all()->shuffle()->take(config('default.show_limit'));
-        $roomTypes = $roomTypeRepository->all()->shuffle()->take(config('default.show_limit'));
-
-        return view('home.home', compact('cities', 'cityList', 'hotels', 'roomTypes'));
+        return view('home.home', compact('cities', 'cityGroup', 'hotelGroup'));
     }
 
     public function getProfile()
