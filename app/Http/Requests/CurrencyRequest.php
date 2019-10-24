@@ -13,7 +13,7 @@ class CurrencyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,22 @@ class CurrencyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:currencies',
+            'symbol' => 'required|unique:currency',
+            'exchange_ratio' => 'required',
+
+        ];
+    }
+
+    public function message()
+    {
+        return [
+            'name.required' => trans('admin.cur_name_rq'),
+            'name.unique' => trans('admin.cur_name_rq2'),
+            'symbol.required' => trans('admin.cur_symbol_rq'),
+            'symbol.unique' => trans('admin.cur_symbol_rq2'),
+            'exchange_ratio.required' => trans('admin.cur_ratio_rq'),
+
         ];
     }
 }

@@ -194,7 +194,7 @@
                                     <span class="right badge badge-danger"></span>
                                 </p>
                             </a>
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin_room_types_index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-bed"></i>
                                 <p>
                                     {{ trans('admin.room_types_title') }}
@@ -208,8 +208,8 @@
                                     <span class="right badge badge-danger"></span>
                                 </p>
                             </a>
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-square"></i>
+                            <a href="{{ route('admin_currencies_index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-dollar-sign"></i>
                                 <p>
                                     {{ trans('admin.currencies_title') }}
                                     <span class="right badge badge-danger"></span>

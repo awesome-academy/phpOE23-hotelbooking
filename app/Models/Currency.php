@@ -8,6 +8,13 @@ class Currency extends Model
 {
     protected $table = 'currencies';
 
+    protected $fillable = [
+        'name',
+        'symbol',
+        'exchange_ratio',
+        
+    ];
+
     public function prices()
     {
         return $this->hasMany(Price::class, 'currency_id');

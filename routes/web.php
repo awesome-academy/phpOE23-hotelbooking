@@ -45,6 +45,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin|root']],
         Route::post('/store', 'Admin\CityController@store')->name('admin_cities_store');
         Route::post('/update/{id}', 'Admin\CityController@update')->name('admin_cities_update');
     });
+
+    Route::group(['prefix' => 'room_types'], function () {
+        Route::get('/index', 'Admin\RoomTypeController@index')->name('admin_room_types_index');
+        Route::post('/store', 'Admin\RoomTypeController@store')->name('admin_room_types_store');
+        Route::post('/update/{id}', 'Admin\RoomTypeController@update')->name('admin_room_types_update');
+        Route::post('/delete/{id}', 'Admin\RoomTypeController@destroy')->name('admin_room_types_delete');
+    });
+    Route::group(['prefix' => 'currencies'], function () {
+        Route::get('/index', 'Admin\CurrencyController@index')->name('admin_currencies_index');
+        Route::post('/store', 'Admin\CurrencyController@store')->name('admin_currencies_store');
+        Route::post('/update/{id}', 'Admin\CurrencyController@update')->name('admin_currencies_update');
+    });
 });
 
 Route::group(['prefix' => 'home'], function () {

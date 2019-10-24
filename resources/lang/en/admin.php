@@ -58,7 +58,26 @@ return [
     'hotel_delete_success' => 'A Hotel has been deleted',
 
     'room_types_title' => 'Room Types',
+    'capacity' => 'Capacity',
+    'rtype_name_rq' => 'Room Type name must be set',
+    'rtype_name_rq2' => 'Room Type name is already in use',
+    'rtype_capa_rq' => 'Room Capacity must be set',
+    'rtype_add_success' => 'A new Room Type has been added',
+    'rtype_update_success' => 'A Room Type has been modified',
+    'rtype_delete_success' => 'A Room Type has been removed',
+    'rtype_delete_failure' => 'Room Type in use. Cannot delete',
+
     'booking_cards_title' => 'Booking Cards',
+    
     'currencies_title' => 'Currencies',
+    'symbol' => 'Symbol',
+    'ratio' => 'To Dollar Exchange Ratio',
+    'cur_name_rq' => 'Currency Name must be set',
+    'cur_name_rq2' => 'Currency Name must be unique',
+    'cur_symbol_rq' => 'Currency Symbol must be set',
+    'cur_symbol_rq2' => 'Currency Symbol must be unique',
+    'cur_ratio_rq' => 'The Exchange Ratio must be set',
+    'cur_add_success' => 'A new Currency has been added',
+    'cur_update_success' => 'A Currency has been modified',
 
 ];
